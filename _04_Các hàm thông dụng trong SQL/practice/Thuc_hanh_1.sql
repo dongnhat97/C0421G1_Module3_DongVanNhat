@@ -9,4 +9,18 @@ GROUP BY Address;
  from student s 
  inner join Mark m on s.StudentId = m.StudentId
  group by  s.StudentId, s.StudentName;
+ 
 -- Hiển thị những bạn học viên co điểm trung bình các môn học lớn hơn 15 
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) > 9;
+
+-- Hiển thị thông tin các học viên có điểm trung bình lớn nhất.
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
+-- Mai hỏi anh tiến  
+

@@ -1,4 +1,4 @@
-drop database if exists Furama_Managemet;
+drop database if exists Furama_Management;
 create database Furama_Management;
 use Furama_Management;
 -- bảng ví trí  
@@ -46,7 +46,7 @@ id_level int,
 id_section int,
 employee_date date,
 identity_Card varchar(50),
-salary varchar(50),
+salary int,
 number_phone varchar(50),
 email varchar(50),
 address varchar(50),
@@ -71,6 +71,7 @@ foreign key(id_customer_type) references customer_type (id_customer_type)
 -- Bảng dịch vụ 
 create table Service (
 id_service int primary key auto_increment,
+service_name varchar(50),
 area int,
 floors int,
 max_person int,
