@@ -27,7 +27,7 @@ ORDER BY use_number;
 --  cho tất cả các Khách hàng đã từng đặt phỏng (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra). 
 -- (sửa) 
 SELECT C.id_customer, C.customer_name, CT.id_contract, CType.customer_type_name,
-CT.start_contract, CT.end_contract, S.cost_retal + CTD.amount * ACS.price as Tong_tien
+CT.start_contract, CT.end_contract, S.cost_retal +coalesce(CTD.amount * ACS.price,0)  as Tong_tien
 FROM contract CT
 RIGHT JOIN customer C ON CT.id_customer = C.id_customer
 INNER JOIN customer_type CType ON CType.id_customer_type = C.id_customer_type
@@ -147,7 +147,7 @@ INNER JOIN contract CT ON CT.id_employee = E.id_employee
 WHERE CT.start_contract BETWEEN '2018-01-01' AND '2019-12-31'
 GROUP BY E.id_employee
 HAVING COUNT(CT.id_contract) <= 3;
--- sửa lại thuộc tính bài 15 
+
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019. 
 SET SQL_SAFE_UPDATES = 0;
@@ -157,47 +157,99 @@ where E.id_employee not in (
 select id_employee  
 from contract 
 where start_contract between '2017-01-01' and '2019-12-31'
-group by e.id_employee
+-- group by e.id_employee
 is not null
 ) ;
 
 -- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, chỉ cập nhật
 --  những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.  
-  update customer set id_customer_type = 1 
-  where id_customer_type = 2 and exists(
-  select*, CTD.amount * ACS.price as Tong_tien
+-- bước 1 : Tạo bảng tạm chứa những câu lệnh điều kiện 
+  CREATE TEMPORARY TABLE IF NOT EXISTS temp(
+  select c.id_customer,sum(S.cost_retal +coalesce(CTD.amount * ACS.price,0))  as Tong_tien
   from customer C 
-  inner join customer_type CType on CType.id_customer_type = C.id_customer_type
   inner join contract CT on C.id_customer=CT.id_customer
+  inner join Service S on CT.id_service = S.id_service
   inner join contract_detail CTD on CTD.id_contract = CT.id_contract
   inner join Accompanied_service ACS on ACS.id_Acc_service = CTD.id_Acc_service 
-  where  year(start_contract) = 2019
+  where  year(start_contract) = 2019 and C.id_customer_type = (select id_customer_type from customer_type where customer_type_name = 'Platinium')
   group by C.id_customer
-  having Tong_tien <10000
+  having sum(S.cost_retal +coalesce(CTD.amount * ACS.price,0)) <10000
   );
+-- bước 2 , update 
+  update customer set id_customer_type = (select id_customer_type from customer_type where customer_type_name = 'Diamond')
+  where id_customer in (
+  select id_customer
+  from temp
+  );
+  DROP TABLE temp;
 
 
 
 -- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
+set foreign_key_checks = 0;
+delete 
+from customer where id_customer in (                          --  dùng inner join mà delete hay update thì phải tạo bảng tạm 
+select id_customer
+from contract c											
+where year (start_contract) < 2016 
+is not null
+);
+
 
 -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
-update Accompanied_service  set price = price*2 where exists (
-select*, count(CTD.id_Acc_service) 
-from contract CT 
-inner join contract_detail CTD on CT.id_contract = CTD.id_contract
-inner join Accompanied_service ACS on CTD.id_Acc_service = ACS.id_Acc_service
-where year(start_contract) = 2019
-group by ACS.id_Acc_service
-having count(CTD.id_Acc_service) <10
+CREATE TEMPORARY TABLE IF NOT EXISTS temp2 (
+SELECT ACS.id_Acc_service , price, sum(CTD.id_Acc_service) as use_time
+FROM Accompanied_service ACS
+INNER JOIN contract_detail CTD on CTD.id_Acc_service = ACS.id_Acc_service
+INNER JOIN contract CT on CT.id_contract = CTD.id_contract
+WHERE year(start_contract) = 2019
+GROUP BY id_Acc_service
+HAVING sum(CTD.id_Acc_service) < 5
 );
+
+update Accompanied_service set price = price*2
+where price in (
+select price
+from temp2
+);
+drop table temp2; 
 
 
 
 -- 20.-- 	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao
 --  gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
-select S.id_employee , C.id_customer , S.employee_name,  C.customer_name , S.email , C.email, C.customer_date,S.employee_date
-from employee S
-inner join contract CT on CT.id_employee = S.id_employee
-inner join
+select id_employee , employee_name,  email , employee_date
+from employee 
+union
+select  id_customer , customer_name, email, customer_date 
+from customer;  
+
+-- 21.	Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ
+--  là “Hải Châu” và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”
+create view V_NHANVIEN AS
+select E.id_employee ,address
+from
+employee E
+inner join contract CT on CT.id_employee = E.id_employee
+where start_contract = '2019-12-12' and address like '%Hải Châu%';
+
+-- 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
+update V_NHANVIEN 
+set address = 'Liên Chiểu';
+
+-- 23.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1 
+delimiter //
+create procedure Sp_1 (id int)
+begin
+delete
+from customer
+where id_customer = id;
+end;
+// delimiter ;
+
+call Sp_1 (2);
+
+-- 24.	Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ 
+-- của dữ liệu bổ sung, với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
 
 

@@ -92,7 +92,7 @@ id_service int,
 start_contract date,
 end_contract date,
 deposit int,
-foreign key(id_employee) references employee(id_employee),
+foreign key(id_employee) references employee(id_employee) on update cascade on delete cascade,
 foreign key(id_customer) references Customer(id_customer),
 foreign key(id_service) references Service(id_service)
 );
@@ -111,7 +111,7 @@ id_contract_detail int primary key auto_increment,
 id_contract int,
 id_Acc_service int,
 amount int,
-foreign key(id_contract) references Contract(id_contract),
+foreign key(id_contract) references Contract(id_contract) on update cascade on delete cascade,
 foreign key(id_Acc_service) references Accompanied_service(id_Acc_service)
 );
 
