@@ -23,6 +23,10 @@ create database demo;
   create index idx_productCode on 
   products (productcode);
   
+  -- xóa index thì phải on table 
+  drop index idx_productCode on 
+  products;
+  
 -- Tạo Composite Index trên bảng Products (sử dụng 2 cột productName và productPrice)
 create index idex_two on 
 products(productPrice,productName);
@@ -79,7 +83,8 @@ call pr_insert(66,'audi',10000,2,'supper pro','new');
    // delimiter ;
    
    call  pr_update(1,678,'mec',2000,3,'xuat sắc','100%');
-   
+ 
+ 
    -- Tạo store procedure xoá sản phẩm theo id
     delimiter //
     create procedure pr_delete(id_delete int)
