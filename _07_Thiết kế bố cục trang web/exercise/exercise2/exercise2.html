@@ -65,6 +65,11 @@
             color: white;
             font-size: 20px;
         }
+        @media only screen and(max-width: 768px) {
+            [class*="col-"] {
+                width: 100%;
+            }
+        }
 
     </style>
 </head>
@@ -101,7 +106,7 @@
         </div>
     </div>
 </div>
-<div>
+
     <div class="col-8" style="font-size: 50px" >
         Welcome
         <p style="font-size: 20px">
@@ -115,19 +120,19 @@
        </div>
     </div>
 
-</div>
+
 <div class="left-right-color height-left-right col-2">
 
-      <div class="margin-add box-add">
+      <div class="margin-add box-add col-12">
          ADS
       </div>
 
 
-    <div class="margin-add box-add">
+    <div class="margin-add box-add col-12">
         ADS
 </div>
 </div>
-    <div class="Footer">
+    <div class="Footer col-12">
         Footer Text
     </div>
 </body>

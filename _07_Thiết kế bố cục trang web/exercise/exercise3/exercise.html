@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.66%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.66%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;;
+        }
+
+        @media only screen and(max-width: 768px) {
+            [class*="col-"] {
+                width: 100%;
+            }
+        }
+
+        .f {
+            /*width: 30px;*/
+        }
+
+        .font-size {
+            background-color: wheat;
+            font-size: small;
+        }
+
+        .search {
+            width: 100px;
+            background-color: dimgray;
+        }
+
+        .margin-header {
+            margin: 3px;
+        }
+         .header {
+             font-size: 15px;
+         }
+
+    </style>
+
+</head>
+<body>
+<div class="row header">
+        <div class="col-3">
+            <div class="row">
+                <div class="col-4">
+                    <a href="ahihi.html">
+                        <img src="pngtree-facebook--icon-png-round-corner-png-image_3562016.jpg" style="width: 100%" >
+                    </a>
+                </div>
+                <div class="col-8">
+                    <input type="search" placeholder="Tìm kiếm trên Facebook"style="width: 100%">
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <div style="text-align: center">
+                        Home |
+                        |>Media |
+                        Cửa hàng |
+                        Nhóm |
+                        Game |
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="col-3">
+            <div  class="row">
+                <div class="col-12">
+                    Tài Khoản
+                    Message
+                    Thông báo
+                    Cài đặt
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
