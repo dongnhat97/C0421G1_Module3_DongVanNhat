@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+        }
+        .row-color-black {
+            background-color: rgb(64, 64, 64);
+            font-family: "Times New Roman";
+            color: dimgray;
+        }
+        .row-color-black:hover{
+            color: white;
+            background-color: black;
+
+        }
+        .left-right-color {
+            background-color: rgba(217, 221, 226, 0.96);
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;;
+        }
+        .height-left-right{
+            height: 500px;
+        }
+        .margin-add {
+         margin: 30px 30px 30px 30px;
+         font-size: 30px;
+        }
+        .box-add{
+            background-color: rgba(255, 255, 255, 0.66);
+            width: 130px;
+            height: 80px;
+            padding: 18px 30px 30px 30px;
+            border-bottom: 50px;
+        }
+        .Footer {
+            height: 50px;
+            background-color: dimgray;
+            clear: both;
+            text-align: center;
+            padding-top: 10px;
+            color: white;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="col-1 row-color-black">
+       Logo
+    </div>
+    <div class="col-1 row-color-black">
+        Home
+    </div>
+     <div class="col-1 row-color-black">
+         About
+     </div>
+
+    <div class="col-1 row-color-black">
+        Project
+    </div>
+    <div class="col-1 row-color-black">
+        Contact
+    </div>
+    <div class="col-7 row-color-black" style="text-align: right">
+        Login
+    </div>
+<div>
+    <div class="col-2 left-right-color height-left-right">
+        <div class="col-12" style="color: blue">
+            Link
+        </div>
+        <div class="col-12" style="color: blue">
+            Link
+        </div>
+        <div class="col-12" style="color: blue">
+            Link
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-8" style="font-size: 50px" >
+        Welcome
+        <p style="font-size: 20px">
+            Lunar New Year Festival often falls between late January and early February; it is among the most important holidays in Vietnam. Officially, the festival includes the 1st, 2nd, and 3rd day in Lunar Calendar; however, Vietnamese people often spend nearly a month celebrating this special event. Tet Holiday gets its beginning marked with the first day in the Lunar Year; however, its preparation starts long before that. The 23rd day of the last Lunar month is East Day—a ritual worshiping Kitchen Gods (Tao Cong). It thought that each year on this day, these Gods go to heaven to tell Jade Emperor about all activities of households on earth. On New Year’s Eve, they return home to continue their duties as taking care of families. On New Year’s Day, the first ones who come to visit households—called first-foot—are very important and hence need to be well chosen, as they believed to hold in their hands the entire luck of the family in New Year (Tan Nien).
+        </p>
+        <p style="font-size: 30px">
+            Test
+        </p>
+       <div style="font-size: 20px">
+           lorem ipsum ...
+       </div>
+    </div>
+
+</div>
+<div class="left-right-color height-left-right col-2">
+
+      <div class="margin-add box-add">
+         ADS
+      </div>
+
+
+    <div class="margin-add box-add">
+        ADS
+</div>
+</div>
+    <div class="Footer">
+        Footer Text
+    </div>
+</body>
+</html>
