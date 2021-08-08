@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="388befde-2617-45af-8175-ea8c28e43ca4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../practice/User/src/main/webapp/user/detail_user.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/User/src/main/webapp/user/update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/classes/java/main/com/codegym/controller/CustomerServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/classes/java/main/com/codegym/model/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/classes/java/main/com/codegym/service/CustomerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/classes/java/main/com/codegym/service/CustomerServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/libs/Customers-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/build/tmp/war/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/java/com/codegym/controller/CustomerServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/java/com/codegym/model/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/java/com/codegym/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/java/com/codegym/service/CustomerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/customer/create.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/customer/delete.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/customer/edit.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/customer/list.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/customer/view.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/error-404.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_11_MVC/exercise/Customers/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/controller/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/impl/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/impl/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/impl/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/model/repository/impl/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/model/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/model/service/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/java/model/service/ipml/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/java/model/service/ipml/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/webapp/User/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/webapp/user/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/webapp/User/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/webapp/user/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../practice/User/src/main/webapp/User/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../practice/User/src/main/webapp/user/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/controller/ProductServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/model/bean/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/model/repository/IProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/model/repository/impl/ProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/model/service/IProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/WEB-INF/classes/model/service/impl/ProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/error-404.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/product/create.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/product/delete.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/product/edit.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/product/list.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../apache-tomcat-9.0.50/webapps/ROOT/product/view.jsp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1wOob1zK7Y7P9DnLmobnBn5pFZQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../practice/User" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="388befde-2617-45af-8175-ea8c28e43ca4" name="Default Changelist" comment="" />
+      <created>1628339063137</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628339063137</updated>
+      <workItem from="1628339064760" duration="30000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="163" y="0" key="#Project_Structure" timestamp="1628339077342">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1628339077342" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1628339094938">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1628339094938" />
+  </component>
+</project>
