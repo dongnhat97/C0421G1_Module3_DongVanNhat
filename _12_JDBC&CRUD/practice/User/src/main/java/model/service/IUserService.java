@@ -13,4 +13,10 @@ public interface IUserService {
     String save (User user);
     List<User> findCountry(String country);
     List<User> findOrder();
+    User selectId(int id);
+    public void addUserTransaction(User user, int[] permisions);
+    List<User> spFindAll();
+    String spCreate(User user) throws SQLException;
+    boolean spUpdate(User user) throws SQLException;
+    boolean spDelete(int id);
 }

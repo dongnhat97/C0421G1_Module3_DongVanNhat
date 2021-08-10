@@ -47,4 +47,38 @@ public class UserService implements IUserService {
     public List<User> findOrder() {
         return iUserRepository.findOrder();
     }
+
+    @Override
+    public User selectId(int id) {
+        return iUserRepository.selectId(id);
+    }
+
+    @Override
+    public void addUserTransaction(User user, int[] permisions) {
+        try {
+            iUserRepository.addUserTransaction(user,permisions);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<User> spFindAll() {
+        return iUserRepository.spFindAll();
+    }
+
+    @Override
+    public String spCreate(User user) throws SQLException {
+        return iUserRepository.spCreate(user);
+    }
+
+    @Override
+    public boolean spUpdate(User user) throws SQLException {
+        return iUserRepository.spUpdate(user);
+    }
+
+    @Override
+    public boolean spDelete(int id) {
+        return iUserRepository.spDelete(id);
+    }
 }

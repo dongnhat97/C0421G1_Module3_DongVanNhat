@@ -25,24 +25,39 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                   create(request,response);
+//                   create(request,response);
+                try {
+                    spCreate(request,response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             case "update":
+//                try {
+//                    update(request,response);
+//                } catch (SQLException throwables) {
+//                    throwables.printStackTrace();
+//                }
                 try {
-                    update(request,response);
+                    spUpdate(request,response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "delete":
-                delete(request,response);
+//                delete(request,response);
+                try {
+                    spDelete(request,response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             case "search":
                 search(request,response);
                 break;
-//            default:
-//                createList(request,response);
-//                break;
+            case "searchId":
+                searchByID(request,response);
+                break;
         }
     }
     private void create (HttpServletRequest request, HttpServletResponse response)
@@ -114,10 +129,74 @@ public class UserServlet extends HttpServlet {
                request.getRequestDispatcher("user/search.jsp").forward(request,response);
            }else {
                request.setAttribute("message","not exist");
-               request.getRequestDispatcher("user/search.jsp");
+               request.getRequestDispatcher("user/search.jsp").forward(request,response);
            }
     }
+    private  void searchByID(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+          int id = Integer.parseInt(request.getParameter("id"));
+          if (iUserService.selectId(id)!=null) {
+              request.setAttribute("message","ok");
+              request.setAttribute("listId",iUserService.selectId(id));
+              request.getRequestDispatcher("user/search_id.jsp").forward(request,response);
+          }else {
+              request.setAttribute("message","fail");
+              request.getRequestDispatcher("user/search_id.jsp").forward(request,response);
+          }
+    }
+// Hàm create procedure
+private  void spCreate(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException, SQLException {
+        User user = new User();
+    String name = request.getParameter("name");
+    String email = request.getParameter("email");
+    String country = request.getParameter("country");
+    user.setName(name);
+    user.setEmail(email);
+    user.setCountry(country);
+    if ("Thêm mới thành công".equals(iUserService.spCreate(user))) {
+        request.setAttribute("message","Thêm mới thành công");
+        request.setAttribute("userListServlet", this.iUserService.spFindAll());
+        request.getRequestDispatcher("user/list.jsp").forward(request,response);
+    }else {
+        request.setAttribute("message","Thêm mới không thành công");
+        request.getRequestDispatcher("user/create.jsp").forward(request,response);
+    }
+}
+// Hamf update procedure
+private  void spUpdate(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException, SQLException {
 
+     int id = Integer.parseInt(request.getParameter("id"));
+    User user = iUserService.findId(id);
+    String name = request.getParameter("name");
+    String email = request.getParameter("email");
+    String country = request.getParameter("country");
+    user.setName(name);
+    user.setEmail(email);
+    user.setCountry(country);
+    if (iUserService.spUpdate(user)) {
+        request.setAttribute("message","Cập nhật thành công");
+        request.setAttribute("userListServlet", this.iUserService.findAll());
+        request.getRequestDispatcher("user/list.jsp").forward(request,response);
+    }else {
+        request.setAttribute("message","Thêm mới không thành công");
+        request.getRequestDispatcher("user/update.jsp").forward(request,response);
+    }
+}
+// hàm procedure delete
+private  void spDelete(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        if (iUserService.spDelete(id)) {
+            request.setAttribute("message","xóa thành công");
+            request.setAttribute("userListServlet",iUserService.findAll());
+            request.getRequestDispatcher("user/list.jsp").forward(request,response);
+        }else {
+            request.setAttribute("message","xóa không thành công");
+            request.getRequestDispatcher("user/delete.jsp").forward(request,response);
+        }
+}
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -141,9 +220,16 @@ public class UserServlet extends HttpServlet {
                 break;
             case "orderBy":
                 orderBy(request,response);
+                break;
+            case "searchId":
+                searchId(request,response);
+                break;
+            case "permision":
+                addUserPermision(request,response);
+                break;
             default:
-
-                showList(request,response);
+//                showList(request,response);
+                spFindAll(request,response);
                 break;
         }
     }
@@ -196,4 +282,24 @@ public class UserServlet extends HttpServlet {
 
        request.getRequestDispatcher("user/list.jsp").forward(request,response);
     }
+//    Hàm tìm kiếm bằng Id
+    private void searchId(HttpServletRequest request,HttpServletResponse  response)
+            throws ServletException, IOException{
+       request.getRequestDispatcher("user/search_id.jsp").forward(request,response);
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+
+        int[] permision = {1, 2, 4};
+
+        iUserService.addUserTransaction(user, permision);
+    }
+//    Hàm procedure
+private void spFindAll(HttpServletRequest request,HttpServletResponse response)
+        throws ServletException, IOException{
+    request.setAttribute("userListServlet", this.iUserService.spFindAll());
+    request.getRequestDispatcher("user/list.jsp").forward(request, response);
+}
 }

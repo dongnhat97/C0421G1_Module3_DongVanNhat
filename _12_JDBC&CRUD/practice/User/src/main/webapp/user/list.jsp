@@ -54,6 +54,7 @@
     </tr>
     </c:forEach>
 </table>
- <p><a href="/users?action=search"> <input type="submit"value="Search"></a></p>
+ <p><a href="/users?action=search"> <input type="submit"value="Search Country"></a></p>
+ <p> <a href="/users?action=searchId"><input type="submit" value="Search ID"></a></p>
 </body>
 </html>
