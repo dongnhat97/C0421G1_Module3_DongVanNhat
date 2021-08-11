@@ -99,7 +99,7 @@
         </div>
         <div class="col-10 back_ground_col-10">
              <h3 >Create</h3>
-            <p><input></p>
+            <p><a href="/customers?action=create_customer"><input type="submit" value="Create"></a></p>
             <table class="table" style="padding-left: 40px" border="1" >
                 <tr style="text-align: center">
                     <th>ID</th>
