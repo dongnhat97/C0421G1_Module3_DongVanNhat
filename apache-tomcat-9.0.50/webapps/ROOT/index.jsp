@@ -9,7 +9,7 @@
 <html>
   <head>
     <title>Furama Resort</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.css">
+    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
     <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
     <link rel="stylesheet" href="/untitled/js/bootstrap.js">
     <style>
@@ -53,7 +53,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="navbar-brand" href="#">Employee</a>
+                <a class="navbar-brand" href="/employee?action=employee_list">Employee</a>
               </li>
               <li class="nav-item">
                 <a class="navbar-brand" href="/customers?action=customer_list">Customer</a>

@@ -46,7 +46,9 @@
     <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 10px">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#" style="margin-left:450px">Home</a>
+
+                <a class="navbar-brand" href="/" style="margin-left:450px">Home</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +60,7 @@
                             <a class="navbar-brand" href="#">Employee</a>
                         </li>
                         <li class="nav-item">
-                            <a class="navbar-brand" href="/customers">Customer</a>
+                            <a class="navbar-brand" href="/customers?action=customer_list">Customer</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="navbar-brand" href="#">Service</a>
@@ -98,6 +100,7 @@
             </div>
         </div>
         <div class="col-10 back_ground_col-10">
+            <p>${message}</p>
              <h3 >Create</h3>
             <p><a href="/customers?action=create_customer"><input type="submit" value="Create"></a></p>
             <table class="table" style="padding-left: 40px" border="1" >
@@ -134,6 +137,31 @@
                         <td>${customer.getCustomerPhone()}</td>
                         <td>${customer.getCustomerEmail()}</td>
                         <td>${customer.getCustomerAddress()}</td>
+                        <td><button onclick="onDelete(${customer.getCustomerId()})" type="button" class="btn btn-danger" data-target="#modelId">Delete</button></td>
+                         <td><a href="/customers?action=update_customer&id=${customer.getCustomerId()}"> Update</a> </td>
+                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirm delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="/customers">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="" id="idOnDelete">
+                                        <div class="modal-body">
+                                            Ban co muon xoa user <span style="color: red">${customer.getCustomerName()}</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">OK</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                 </c:forEach>
             </table>
@@ -146,5 +174,13 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
+<script>
+    function onDelete(id) {
+     document.getElementById("idOnDelete").value = id;
+    }
+</script>
 </body>
+<script src="/untitled/js/bootstrap.js"></script>
+<script src="/untitled/jquery/popper.min.js"></script>
+<script src="/untitled/jquery/jquery-3.5.1.min.js"></script>
 </html>

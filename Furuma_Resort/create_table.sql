@@ -77,9 +77,14 @@ create table user_role (
  foreign key(division_id) references division(division_id),
  foreign key(user_name) references `user`(user_name)
  );
- --  Bảng customer
+ -- Hiển thị  
+ select * 
+ from employee; 
+ 
+ --  Bảng customer --------------------------------------------------------------------------------------------
  create table customer(
  customer_id int primary key auto_increment,
+ customer_code varchar(50),
  customer_type_id int,
  customer_name varchar(50),
  customer_birthday date,
@@ -90,12 +95,25 @@ create table user_role (
  customer_address varchar(50),
  foreign key(customer_type_id) references customer_type(customer_type_id) 
  );
- select *
- from Customer; 
+ -- insert 
+insert into customer (customer_code,customer_type_id,customer_name,customer_birthday,customer_gender,customer_id_car,customer_phone,customer_email,customer_address) 
+ value('code vip',2,'Le văn Dẹp','2000-12-08',1,'184265562','0898065729','depdeptrai@gmail.com','Quảng Trị');
+ -- search
+ select*
+ from customer
+ where customer_id = 3;
+ -- update
+ 
+ update customer
+ set customer_code = 'vina', customer_type_id = 1, customer_name ='Ha', customer_birthday = '1997-08-28', customer_gender=1,customer_id_car='09999', customer_phone ='0997268322',customer_email='nhapdepzai@',customer_address='Hai phong'
+where customer_id = 1; 
+ 
+ 
  
  --  Bảng service ---------------------------------------------------------------------------------
  create table service (
  service_id int primary key auto_increment,
+ service_code varchar(50),
  service_name varchar(50),
  service_area int,
  service_cost double,
