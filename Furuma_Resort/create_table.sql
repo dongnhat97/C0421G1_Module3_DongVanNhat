@@ -83,14 +83,17 @@ create table user_role (
  customer_type_id int,
  customer_name varchar(50),
  customer_birthday date,
- customer_gender bit,
+ customer_gender int,
  customer_id_car varchar(50),
  customer_phone varchar(50),
  customer_email varchar(50),
- customer_addgress varchar(50),
+ customer_address varchar(50),
  foreign key(customer_type_id) references customer_type(customer_type_id) 
  );
- --  Bảng service 
+ select *
+ from Customer; 
+ 
+ --  Bảng service ---------------------------------------------------------------------------------
  create table service (
  service_id int primary key auto_increment,
  service_name varchar(50),
