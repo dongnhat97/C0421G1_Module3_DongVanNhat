@@ -22,12 +22,22 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Customer showId(int id) {
-        return null;
+    public Employee showId(int id) {
+        return iEmployeeRepository.showId(id);
     }
 
     @Override
     public boolean updateEmployee(Employee employee) {
-        return false;
+        return iEmployeeRepository.updateEmployee(employee);
+    }
+
+    @Override
+    public boolean deleteEmployee(int id) {
+        return iEmployeeRepository.deleteEmployee(id);
+    }
+
+    @Override
+    public List<Employee> showName(String name) {
+        return iEmployeeRepository.showName(name);
     }
 }

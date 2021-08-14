@@ -5,20 +5,22 @@
   Time: 1:34 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.js">
+    <link rel="stylesheet" href="/assert/untitled/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.js">
     <style>
-        .back_ground_col-2{
+        .back_ground_col-2 {
             background-color: #0dcaf0;
             color: #6c757d;
             height: 2000px;
             font-size: 25px;
         }
+
         .back_ground_col-10 {
             /*background-color: burlywood;*/
             text-align: center;
@@ -101,27 +103,39 @@
             <fieldset>
                 <h2>Create Customer</h2>
                 <p>${message}</p>
-            <form  method="post">
-                <p>Code</p>
-                <p><input type="text" name="code"></p>
-                <p>ID Type</p>
-                <p><input type="text" name="typeId"></p>
-                <p>Name</p>
-                <p><input type="text" name="name"></p>
-                <p>Birthday</p>
-                <p><input type="text" name="birthday"></p>
-                <p>Gender</p>
-                <p><input type="text" name="gender"></p>
-                <p>ID Car</p>
-                <p><input type="text" name="idCar"></p>
-                <p>Number PHone</p>
-                <p><input type="text" name="phone"></p>
-                <p>Email</p>
-                <p><input type="text" name="email"></p>
-                <p>Address</p>
-                <p><input type="text" name="address"></p>
-                <p><input type="submit" value="Create"></p>
-            </form>
+                <form method="post">
+                    <p>Code</p>
+                    <p><input type="text" name="code"></p>
+                    <p>ID Customer Type</p>
+                    <p>
+                    <td>
+                        <select name="typeId" style="width: 182px">
+                            <c:forEach var="customerType" items="${lisCustomerType}">
+                                <option value='${customerType.customerTypeID}'>${customerType.customerTypeName}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    </p>
+                    <p>Name</p>
+                    <p><input type="text" name="name"></p>
+                    <p>Birthday</p>
+                    <p><input type="text" name="birthday"></p>
+                    <p>Gender</p>
+                    <p><select name="gender" style="width: 182px">
+                        <option selected>Choose one</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select></p>
+                    <p>ID Car</p>
+                    <p><input type="text" name="idCar"></p>
+                    <p>Number PHone</p>
+                    <p><input type="text" name="phone"></p>
+                    <p>Email</p>
+                    <p><input type="text" name="email"></p>
+                    <p>Address</p>
+                    <p><input type="text" name="address"></p>
+                    <p><input type="submit" value="Create"></p>
+                </form>
             </fieldset>
 
         </div>
@@ -132,5 +146,8 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
+<script src="/assert/untitled/js/bootstrap.js"></script>
+<script src="/assert/untitled/jquery/popper.min.js"></script>
+<script src="/assert/untitled/jquery/jquery-3.5.1.min.js"></script>
 </body>
 </html>

@@ -1,17 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MR DONG NHAT
-  Date: 8/11/2021
-  Time: 8:39 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Furuma</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.js">
+    <link rel="stylesheet" href="/assert/untitled/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.js">
     <style>
         .back_ground_col-2{
             background-color: #0dcaf0;
@@ -117,7 +111,13 @@
                     <p>Address</p>
                     <p><input type="text" name="Address"></p>
                     <p>Position ID</p>
-                    <p><input type="text" name="Position"></p>
+                    <p>
+                        <select name="Position" style="width: 182px">
+                            <c:forEach var="position" items="${positionList}">
+                                <option value='${position.getPositionId()}' >${position.getPositionName()}</option>
+                            </c:forEach>
+                        </select>
+                    </p>
                     <p>Education ID</p>
                     <p><input type="text" name="Education"></p>
                     <p>Division ID</p>
@@ -137,5 +137,8 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
+<script src="/assert/untitled/js/bootstrap.js"></script>
+<script src="/assert/untitled/jquery/popper.min.js"></script>
+<script src="/assert/untitled/jquery/jquery-3.5.1.min.js"></script>
 </body>
 </html>

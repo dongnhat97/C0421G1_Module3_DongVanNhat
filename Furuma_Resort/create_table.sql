@@ -6,6 +6,8 @@ create table position (
 position_id int primary key auto_increment,
 position_name varchar(50)
 );
+select*
+from position;
 -- Bảng  education_degree
 create table education_degree (
 education_degree_id int primary key auto_increment,
@@ -22,8 +24,14 @@ create table customer_type (
 customer_type_id int primary key auto_increment,
 customer_type_name varchar(50)
 );
+SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 1;
 
--- Bảng service_type  
+
+select*
+from customer_type;
+
+-- Bảng service_type  ---------------------------------------------------------------------------------
 create table service_type (
 service_type_id int primary key auto_increment,
 service_type_name varchar(50)
@@ -81,6 +89,21 @@ create table user_role (
  select * 
  from employee; 
  
+ -- Hiển thị id
+ select*
+ from employee
+ where employee_id =1;
+ 
+ -- Update employee
+ update employee
+ set employee_name = 'nhat',employee_birthday = '1991-08-12',employee_id_car='221122333',employee_salary= 25.5,employee_phone='0923112233',
+ employee_email='ronaldopro@gmail',employee_address='Ha Tinh',position_id =2,education_degree_id=1,division_id=2,division_id=2,user_name='fifa'
+ where employee_id = 1;
+ --  delee employee
+ delete
+from employee
+where employee_id =3;
+ 
  --  Bảng customer --------------------------------------------------------------------------------------------
  create table customer(
  customer_id int primary key auto_increment,
@@ -103,14 +126,16 @@ insert into customer (customer_code,customer_type_id,customer_name,customer_birt
  from customer
  where customer_id = 3;
  -- update
- 
  update customer
  set customer_code = 'vina', customer_type_id = 1, customer_name ='Ha', customer_birthday = '1997-08-28', customer_gender=1,customer_id_car='09999', customer_phone ='0997268322',customer_email='nhapdepzai@',customer_address='Hai phong'
 where customer_id = 1; 
  
+delete
+from customer
+where customer_id =3;
  
  
- --  Bảng service ---------------------------------------------------------------------------------
+ --  Bảng service -------------------------------------------------------------------------------------------------------
  create table service (
  service_id int primary key auto_increment,
  service_code varchar(50),
@@ -127,8 +152,11 @@ where customer_id = 1;
  foreign key(rent_type_id) references rent_type(rent_type_id),
  foreign key(service_type_id) references  service_type(service_type_id)
  );
+ -- Show Service
+ select*
+ from service;
  
- -- Bảng contract 
+ -- Bảng contract --------------------------------------------------------------------------------------------
  create table contract  (
  contract_id int primary key auto_increment,
  contract_start_date datetime,

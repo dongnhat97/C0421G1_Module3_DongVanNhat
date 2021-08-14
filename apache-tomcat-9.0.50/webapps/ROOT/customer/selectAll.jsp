@@ -10,22 +10,25 @@
 <html>
 <head>
     <title>Furama Resort</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.js">
+    <link rel="stylesheet" href="/assert/untitled/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.js">
+
     <style>
         .back_ground_col-2 {
-            background-color: #0dcaf0;
+            background-color: whitesmoke;
             color: #6c757d;
-            height: 500px;
+            height: 1500px;
             font-size: 25px;
         }
 
         .back_ground_col-10 {
+            background-color: burlywood;
             text-align: center;
             padding-top: 100px;
         }
     </style>
+
 </head>
 <body>
 
@@ -34,7 +37,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="images.png" alt="" width="60" height="50" class="d-inline-block align-text-top">
+                    <img src="/assert/images.png" alt="" width="60" height="50" class="d-inline-block align-text-top">
                     <span style="position: relative; top:20px">Furama</span>
                 </a>
                 <p>Đồng Văn Nhật</p>
@@ -57,7 +60,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="navbar-brand" href="#">Employee</a>
+                            <a class="navbar-brand" href="/employee?action=employee_list">Employee</a>
                         </li>
                         <li class="nav-item">
                             <a class="navbar-brand" href="/customers?action=customer_list">Customer</a>
@@ -77,8 +80,8 @@
                             <a class="navbar-brand" href="#">Contract</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" >
+                        <input class="form-control me-2" type="search" placeholder="Search" name="name" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
@@ -100,6 +103,8 @@
             </div>
         </div>
         <div class="col-10 back_ground_col-10">
+
+
             <p>${message}</p>
              <h3 >Create</h3>
             <p><a href="/customers?action=create_customer"><input type="submit" value="Create"></a></p>
@@ -115,15 +120,23 @@
                     <th>Number Phone</th>
                     <th>Email</th>
                     <th>Address</th>
-                    <th>Update</th>
                     <th>Delete</th>
+                    <th>Update</th>
                 </tr>
 
                 <c:forEach items="${requestScope['CustomerList']}" var="customer">
                     <tr style="text-align: center">
                         <td>${customer.getCustomerId()}</td>
                         <td>${customer.getCustomerCode()}</td>
-                        <td>${customer.getCustomerTypeId()}</td>
+                        <td><c:choose>
+                            <c:when test="${customer.getCustomerTypeId() ==1}">Diamond</c:when>
+                            <c:when test="${customer.getCustomerTypeId() ==2}">Palatinum</c:when>
+                            <c:when test="${customer.getCustomerTypeId() ==3}">Gold</c:when>
+                            <c:when test="${customer.getCustomerTypeId() ==4}">Silver</c:when>
+                            <c:when test="${customer.getCustomerTypeId() ==5}">Member</c:when>
+                            <c:otherwise>Other</c:otherwise>
+                        </c:choose>
+                        </td>
                         <td>${customer.getCustomerName()}</td>
                         <td>${customer.getCustomerBirthday()}</td>
                         <td>
@@ -137,35 +150,15 @@
                         <td>${customer.getCustomerPhone()}</td>
                         <td>${customer.getCustomerEmail()}</td>
                         <td>${customer.getCustomerAddress()}</td>
-                        <td><button onclick="onDelete(${customer.getCustomerId()})" type="button" class="btn btn-danger" data-target="#modelId">Delete</button></td>
-                         <td><a href="/customers?action=update_customer&id=${customer.getCustomerId()}"> Update</a> </td>
-                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Confirm delete</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="/customers">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="id" value="" id="idOnDelete">
-                                        <div class="modal-body">
-                                            Ban co muon xoa user <span style="color: red">${customer.getCustomerName()}</span>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">OK</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <td>
+                            <button type="button" onclick="onDelete('${customer.getCustomerId()}','${customer.getCustomerName()}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+                        </td>
+                         <td><a href="/customers?action=update_customer&id=${customer.getCustomerId()}"> Update</a></td>
                     </tr>
                 </c:forEach>
             </table>
-
         </div>
     </div>
 </div>
@@ -174,13 +167,41 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Bạn có muốn xóa <input name="id" value=""id="onName">
+            </div>
+            <form action="/customers" method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="id" value="" id="idOnDelete">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
-    function onDelete(id) {
-     document.getElementById("idOnDelete").value = id;
+    function onDelete(id,name) {
+        document.getElementById("idOnDelete").value = id;
+        document.getElementById("onName").value = name;
     }
 </script>
 </body>
-<script src="/untitled/js/bootstrap.js"></script>
-<script src="/untitled/jquery/popper.min.js"></script>
-<script src="/untitled/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assert/untitled/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assert/untitled/jquery/popper.min.js"></script>
+<script src="/assert/untitled/js/bootstrap.bundle.js"></script>
+<script src="/assert/untitled/js/bootstrap.js"></script>
 </html>

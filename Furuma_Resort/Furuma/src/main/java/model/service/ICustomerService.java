@@ -10,4 +10,5 @@ public interface ICustomerService {
     String saveCustomer(Customer customer);
     Customer showId(int id);
     boolean updateCustomer(Customer customer);
+    boolean deleteCustomer(int id);
 }

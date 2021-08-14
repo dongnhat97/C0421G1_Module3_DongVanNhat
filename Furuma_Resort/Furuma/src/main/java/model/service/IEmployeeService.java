@@ -9,6 +9,9 @@ import java.util.List;
 public interface IEmployeeService {
     List<Employee> showEmployee() throws SQLException;
     String saveEmployee(Employee employee);
-    Customer showId(int id);
+    Employee showId(int id);
     boolean updateEmployee(Employee employee);
+    boolean deleteEmployee(int id);
+    List<Employee> showName(String name);
+
 }

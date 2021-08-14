@@ -2,7 +2,9 @@ package controller;
 
 import model.bean.Customer;
 import model.service.ICustomerService;
+import model.service.ICustomerTypeService;
 import model.service.impl.CustomerService;
+import model.service.impl.CustomerTypeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "CustomerServlet",urlPatterns = "/customers")
 public class CustomerServlet extends HttpServlet {
     ICustomerService iCustomerService= new CustomerService();
+    ICustomerTypeService iCustomerTypeService = new CustomerTypeService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -29,7 +32,7 @@ public class CustomerServlet extends HttpServlet {
                 updateCustomer(request, response);
                 break;
             case "delete":
-
+                 deleteCustomer(request,response);
                 break;
             case "showList":
 
@@ -37,7 +40,6 @@ public class CustomerServlet extends HttpServlet {
             case "searchId":
                 break;
             case "customer_list":
-
                 break;
         }
     }
@@ -114,6 +116,19 @@ private void CreateCustomer(HttpServletRequest request, HttpServletResponse resp
             request.getRequestDispatcher("customer/update.jsp").forward(request,response);
         }
     }
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         int id = Integer.parseInt(request.getParameter("id"));
+         if (iCustomerService.deleteCustomer(id)){
+             request.setAttribute("message","Đã xóa thành công");
+             try {
+                 request.setAttribute("CustomerList",iCustomerService.showCustomer());
+             } catch (SQLException throwables) {
+                 throwables.printStackTrace();
+             }
+             request.getRequestDispatcher("customer/selectAll.jsp").forward(request,response);
+         }
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -154,11 +169,14 @@ private void CreateCustomer(HttpServletRequest request, HttpServletResponse resp
 //    Hiển thị thêm mới
     private void showCreate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("lisCustomerType",iCustomerTypeService.showAll());
         request.getRequestDispatcher("customer/create.jsp").forward(request,response);
+
     }
 //    Hiển thị update
     private void showUpdate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("lisCustomerType",iCustomerTypeService.showAll());
         request.getRequestDispatcher("customer/update.jsp").forward(request,response);
     }
     private  void showDelete (HttpServletRequest request, HttpServletResponse response)

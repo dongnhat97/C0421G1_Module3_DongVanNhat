@@ -112,4 +112,19 @@ public class CustomerRepository implements ICustomerRepository {
         }
         return row>0;
     }
+
+    @Override
+    public boolean deleteCustomer(int id) {
+        int row = 0;
+        try {
+            PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement("delete\n" +
+                    "from customer\n" +
+                    "where customer_id =?;");
+            preparedStatement.setString(1,id+"");
+            row = preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return row>0;
+    }
 }

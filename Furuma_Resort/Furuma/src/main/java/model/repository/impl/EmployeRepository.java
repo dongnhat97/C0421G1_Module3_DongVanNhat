@@ -85,6 +85,7 @@ public class EmployeRepository  implements IEmployeeRepository {
                 employee.setEmployeeAddress(resultSet.getString("employee_address"));
                 employee.setPositionId(resultSet.getInt("position_id"));
                 employee.setEducationDegreeId(resultSet.getInt("education_degree_id"));
+                employee.setDivisionId(resultSet.getInt("division_id"));
                 employee.setUserName(resultSet.getString("user_name"));
 
             }
@@ -96,6 +97,77 @@ public class EmployeRepository  implements IEmployeeRepository {
 
     @Override
     public boolean updateEmployee(Employee employee) {
-        return false;
+        int row =0;
+        try {
+            PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement("update employee\n" +
+                    " set employee_name =?,employee_birthday =?,employee_id_car=?,employee_salary= ?,employee_phone=?,\n" +
+                    " employee_email=?,employee_address=?,position_id =?,education_degree_id=?,division_id=?,user_name=?\n" +
+                    " where employee_id = ?");
+            System.out.println(preparedStatement);
+            preparedStatement.setString(1,employee.getEmployeeName());
+            preparedStatement.setString(2,employee.getEmployeeBirthday());
+            preparedStatement.setString(3,employee.getEmployeeIdCar());
+            preparedStatement.setDouble(4,employee.getEmployeeSalary());
+            preparedStatement.setString(5,employee.getEmployeePhone());
+            preparedStatement.setString(6,employee.getEmployeeEmail());
+            preparedStatement.setString(7,employee.getEmployeeAddress());
+            preparedStatement.setInt(8,employee.getPositionId());
+            preparedStatement.setInt(9,employee.getEducationDegreeId());
+            preparedStatement.setInt(10,employee.getDivisionId());
+            preparedStatement.setString(11,employee.getUserName());
+            preparedStatement.setInt(12,employee.getEmployeeId());
+
+            row = preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return row>0;
+    }
+
+    @Override
+    public boolean deleteEmployee(int id) {
+        int row = 0;
+        try {
+            PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement(" delete\n" +
+                    "from employee\n" +
+                    "where employee_id =?");
+            preparedStatement.setString(1,id+"");
+            row = preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return row>0;
+    }
+
+    @Override
+    public List<Employee> showName(String name) {
+        List<Employee> employeeList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement("select*\n" +
+                    "from employee\n" +
+                    "where employee_name like ?");
+            preparedStatement.setString(1,'%'+name+'%');
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Employee employee = new Employee();
+                employee.setEmployeeId(resultSet.getInt("employee_id"));
+                employee.setEmployeeName(resultSet.getString("employee_name"));
+                employee.setEmployeeBirthday(resultSet.getString("employee_birthday"));
+                employee.setEmployeeIdCar(resultSet.getString("employee_id_car"));
+                employee.setEmployeeSalary(resultSet.getDouble("employee_salary"));
+                employee.setEmployeePhone(resultSet.getString("employee_phone"));
+                employee.setEmployeeEmail(resultSet.getString("employee_email"));
+                employee.setEmployeeAddress(resultSet.getString("employee_address"));
+                employee.setPositionId(resultSet.getInt("position_id"));
+                employee.setEducationDegreeId(resultSet.getInt("education_degree_id"));
+                employee.setDivisionId(resultSet.getInt("division_id"));
+                employee.setUserName(resultSet.getString("user_name"));
+                employeeList.add(employee);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return employeeList;
     }
 }

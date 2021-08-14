@@ -10,18 +10,19 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.js">
+    <link rel="stylesheet" href="/assert/untitled/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.js">
     <style>
         .back_ground_col-2 {
-            background-color: #0dcaf0;
+            background-color: whitesmoke;
             color: #6c757d;
-            height: 500px;
+            height: 1500px;
             font-size: 25px;
         }
 
         .back_ground_col-10 {
+            background-color: burlywood;
             text-align: center;
             padding-top: 100px;
         }
@@ -46,7 +47,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 10px">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="/" style="margin-left:450px">Home</a>
+                <a class="navbar-brand" href="/customers" style="margin-left:450px">Home</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -99,70 +100,35 @@
             </div>
         </div>
         <div class="col-10 back_ground_col-10">
-            <p>${message}</p>
-            <h3 >Create</h3>
-            <p><a href="/employee?action=create_employee"><input type="submit" value="Create"></a></p>
-            <table class="table" style="padding-left: 40px" border="1" >
-                <tr style="text-align: center">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Birthday</th>
-                    <th>Car</th>
-                    <th>Salary</th>
-                    <th>Number Phone</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Position</th>
-                    <th>Education Degree</th>
-                    <th>Division</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                </tr>
-
-                <c:forEach items="${requestScope['employeeList']}" var="employee">
-                    <tr style="text-align: center">
-                        <td>${employee.getEmployeeId()}</td>
-                        <td>${employee.getEmployeeName()}</td>
-                        <td>${employee.getEmployeeBirthday()}</td>
-                        <td>${employee.getEmployeeIdCar()}</td>
-                        <td>${employee.getEmployeeSalary()}</td>
-                        <td>${employee.getEmployeePhone()}</td>
-                        <td>${employee.getEmployeeEmail()}</td>
-                        <td>${employee.getEmployeeAddress()}</td>
-                        <td>${employee.getPositionId()}</td>
-                        <td>${employee.getEducationDegreeId()}</td>
-                        <td>${employee.getDivisionId()}</td>
-                        <td>${employee.getUserName()}</td>
-
-                        <td><button onclick="onDelete(${employee.getEmployeeId()})" type="button" class="btn btn-danger" data-target="#modelId">Delete</button></td>
-                        <td><a href="/customers?action=update_employee&id=${employee.getEmployeeId()}"> Update</a> </td>
-                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Confirm delete</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="/customers">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="id" value="" id="idOnDelete">
-                                        <div class="modal-body">
-                                            Ban co muon xoa user <span style="color: red">${employee.getEmployeeName()}</span>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">OK</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </tr>
-                </c:forEach>
-            </table>
-
+            <fieldset>
+                <h2>Update Customer</h2>
+                <p>${message}</p>
+                <form  method="post">
+                    <p>Name</p>
+                    <p><input type="text" name="name" value=${employeeID.getEmployeeName()}></p>
+                    <p>Birthday</p>
+                    <p><input type="text" name="birthday" value=${employeeID.getEmployeeBirthday()}></p>
+                    <p>Car</p>
+                    <p><input type="text" name="car" value=${employeeID.getEmployeeIdCar()}></p>
+                    <p>Salary</p>
+                    <p><input type="text" name="salary" value=${employeeID.getEmployeeSalary()}></p>
+                    <p>Number PHone</p>
+                    <p><input type="text" name="phone" value=${employeeID.getEmployeePhone()}></p>
+                    <p>Email</p>
+                    <p><input type="text" name="email" value=${employeeID.getEmployeeEmail()}></p>
+                    <p>Address</p>
+                    <p><input type="text" name="address" value=${employeeID.getEmployeeAddress()}></p>
+                    <p>Position ID</p>
+                    <p><input type="text" name="position" value=${employeeID.getPositionId()}></p>
+                    <p>Education ID</p>
+                    <p><input type="text" name="education" value=${employeeID.getEducationDegreeId()}></p>
+                    <p>Division ID</p>
+                    <p><input type="text" name="division" value=${employeeID.getDivisionId()}></p>
+                    <p>User Name</p>
+                    <p><input type="text" name="user" value=${employeeID.getUserName()}></p>
+                    <p><input type="submit" value="Update"></p>
+                </form>
+            </fieldset>
         </div>
     </div>
 </div>
@@ -171,10 +137,8 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
-<script>
-    function onDelete(id) {
-        document.getElementById("idOnDelete").value = id;
-    }
-</script>
+<script src="/assert/untitled/js/bootstrap.js"></script>
+<script src="/assert/untitled/jquery/popper.min.js"></script>
+<script src="/assert/untitled/jquery/jquery-3.5.1.min.js"></script>
 </body>
 </html>

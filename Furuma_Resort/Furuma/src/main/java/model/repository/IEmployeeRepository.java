@@ -11,4 +11,6 @@ public interface IEmployeeRepository {
     String saveEmployee(Employee employee);
     Employee showId(int id);
     boolean updateEmployee(Employee employee);
+    boolean deleteEmployee(int id);
+    List<Employee> showName(String name);
 }

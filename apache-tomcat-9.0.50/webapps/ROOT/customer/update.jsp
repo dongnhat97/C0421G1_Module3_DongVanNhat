@@ -5,22 +5,24 @@
   Time: 3:57 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/untitled/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/untitled/js/bootstrap.js">
+    <link rel="stylesheet" href="/assert/untitled/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="/assert/untitled/js/bootstrap.js">
     <style>
         .back_ground_col-2 {
-            background-color: #0dcaf0;
+            background-color: whitesmoke;
             color: #6c757d;
-            height: 500px;
+            height: 1500px;
             font-size: 25px;
         }
 
         .back_ground_col-10 {
+            background-color: burlywood;
             text-align: center;
             padding-top: 100px;
         }
@@ -32,7 +34,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="images.png" alt="" width="60" height="50" class="d-inline-block align-text-top">
+                    <img src="assert/images.png" alt="" width="60" height="50" class="d-inline-block align-text-top">
                     <span style="position: relative; top:20px">Furama</span>
                 </a>
                 <p>Đồng Văn Nhật</p>
@@ -45,7 +47,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 10px">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="/customers" style="margin-left:450px">Home</a>
+                <a class="navbar-brand" href="/" style="margin-left:450px">Home</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -55,7 +57,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="navbar-brand" href="#">Employee</a>
+                            <a class="navbar-brand" href="/employee?action=employee_list">Employee</a>
                         </li>
                         <li class="nav-item">
                             <a class="navbar-brand" href="/customers?action=customer_list">Customer</a>
@@ -105,13 +107,25 @@
                     <p>Code</p>
                     <p><input type="text" name="code"></p>
                     <p>ID Type</p>
-                    <p><input type="text" name="typeId"></p>
+                    <p>
+                        <td>
+                        <select name="typeId" style="width: 182px">
+                            <c:forEach var="customerType" items="${lisCustomerType}">
+                                <option value='${customerType.customerTypeID}'>${customerType.customerTypeName}</option>
+                            </c:forEach>
+                        </select>
+                        </td>
+                    </p>
                     <p>Name</p>
                     <p><input type="text" name="name"></p>
                     <p>Birthday</p>
                     <p><input type="text" name="birthday"></p>
                     <p>Gender</p>
-                    <p><input type="text" name="gender"></p>
+                    <p><select name="gender" style="width: 182px">
+                        <option selected>Choose one</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        </select></p>
                     <p>ID Car</p>
                     <p><input type="text" name="idCar"></p>
                     <p>Number PHone</p>
@@ -132,5 +146,8 @@
         <div style="text-align: center">Footer</div>
     </div>
 </div>
+<script src="/untitled/js/bootstrap.js"></script>
+<script src="/untitled/jquery/popper.min.js"></script>
+<script src="/untitled/jquery/jquery-3.5.1.min.js"></script>
 </body>
 </html>
